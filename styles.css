@@ -1315,11 +1315,11 @@ spline-viewer.planet-3D {
     }
 
     .mobile-toggle {
-        display: flex;
+        display: flex !important; /* Ensure it's always visible on mobile */
     }
 
     .nav-menu {
-        display: none; /* Hide by default */
+        display: none !important; /* Hide by default */
         position: fixed;
         top: 0;
         right: -100%;
@@ -1340,6 +1340,7 @@ spline-viewer.planet-3D {
     }
 
     .nav-menu.active {
+        display: flex !important; /* Show when active */
         right: 0;
     }
 
