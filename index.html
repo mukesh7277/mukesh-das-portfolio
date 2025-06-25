@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mukesh Das - Creative Portfolio</title>
+    <meta name="description" content="Mukesh Das - Software Engineer & Backend Developer. Interactive 3D Portfolio with modern design and creative animations.">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💻</text></svg>">
+    
+    <!-- Three.js for 3D Background -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&family=Exo+2:wght@300;400;500;600;700;800&family=Bebas+Neue&display=swap" rel="stylesheet">
+    
+    <!-- AOS Animation Library -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    
+    <!-- Spline Runtime -->
+    <script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.28/build/spline-viewer.js"></script>
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div id="loading-screen">
+        <div class="loading-content">
+            <div class="loading-cube">
+                <div class="cube-face front"></div>
+                <div class="cube-face back"></div>
+                <div class="cube-face right"></div>
+                <div class="cube-face left"></div>
+                <div class="cube-face top"></div>
+                <div class="cube-face bottom"></div>
+            </div>
+            <div class="loading-text">Loading Portfolio...</div>
+        </div>
+    </div>
+
+    <!-- Background Canvas for 3D Effects -->
+    <canvas id="bg-canvas"></canvas>
+
+    <!-- Header -->
+    <header class="modern-header" data-aos="fade-down" data-aos-easing="linear" data-aos-duration="1500">
+        <div class="logo">MUKESH DAS</div>
+        
+        <!-- Mobile hamburger menu -->
+        <button class="mobile-toggle" aria-label="Toggle mobile menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        
+        <nav class="nav-menu">
+            <a href="#home" class="nav-link">
+                <span class="nav-icon">🏠</span>
+                <span class="nav-text">Home</span>
+            </a>
+            <a href="#about" class="nav-link">
+                <span class="nav-icon">👨‍💻</span>
+                <span class="nav-text">About</span>
+            </a>
+            <a href="#skills" class="nav-link">
+                <span class="nav-icon">🛠️</span>
+                <span class="nav-text">Skills</span>
+            </a>
+            <a href="#experience" class="nav-link">
+                <span class="nav-icon">💼</span>
+                <span class="nav-text">Experience</span>
+            </a>
+            <a href="#projects" class="nav-link">
+                <span class="nav-icon">🚀</span>
+                <span class="nav-text">Projects</span>
+            </a>
+            <a href="#education" class="nav-link">
+                <span class="nav-icon">🎓</span>
+                <span class="nav-text">Education</span>
+            </a>
+            <a href="#contact" class="nav-link">
+                <span class="nav-icon">📞</span>
+                <span class="nav-text">Contact</span>
+            </a>
+            <a href="javascript:void(0)" class="nav-link resume-download" onclick="downloadResume()">
+                <span class="nav-icon">📄</span>
+                <span class="nav-text">Resume</span>
+            </a>
+            
+            <!-- Volume Control -->
+            <div class="volume-control-nav">
+                <button class="volume-btn" onclick="toggleVolumeControl()">
+                    <span class="volume-icon">🔊</span>
+                </button>
+                <div class="volume-slider-container" id="volumeSliderContainer">
+                    <input type="range" class="volume-slider-nav" id="volumeSliderNav" min="0" max="100" value="50">
+                    <div class="volume-indicator">
+                        <span id="volumePercent">50%</span>
+                    </div>
+                </div>
+            </div>
+        </nav>
+        <button class="contact-btn mobile-contact" onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'})">Contact</button>
+    </header>
+
+    <!-- Mobile overlay for navigation -->
+    <div class="mobile-overlay"></div>
+
+    <!-- Hero Main Section -->
+    <main class="hero-main" id="home">
+        <div class="title-section" data-aos="fade-down" data-aos-easing="linear" data-aos-duration="1500">
+            <h1>SOFTWARE ENGINEER</h1>
+            <h2>BACKEND DEV</h2>
+            <div class="location">
+                <p>BASED<br>In<br>INDIA</p>
+            </div>
+        </div>
+
+        <div class="bio-section" data-aos="fade-up" data-aos-duration="1500">
+            <p class="bio">                
+                WITH <span style="color: #76b0ab;"> OVER FOUR YEARS </span> OF REFINED EXPERTISE
+                THIS SOFTWARE ENGINEER HAS METICULOUSLY ARCHITECTED
+                SCALABLE AND ROBUST <span style="color: #842626;"> DISTRIBUTED SYSTEMS.</span>
+            </p>
+        </div>
+
+        <div class="scroll-down" data-aos="fade-up" data-aos-duration="1500"></div>
+
+        <spline-viewer data-aos="fade-zoom-in"
+            data-aos-easing="ease-in-back"
+            data-aos-delay="300"
+            data-aos-offset="0" 
+            data-aos-duration="3000" 
+            class="planet-3D"  
+            url="https://prod.spline.design/5GeQ7R7lsgyNBbCH/scene.splinecode">
+        </spline-viewer>
+    </main>
+
+        <!-- About Section -->
+        <section id="about" class="about-section">
+            <h1 class="about-title" data-aos="fade-down" data-aos-easing="linear" data-aos-duration="1500">About Me</h1>
+
+            <div class="bento-grid">
+                <div class="card intro" data-aos="fade-right" data-aos-offset="300" data-aos-easing="ease-in-sine" data-aos-duration="1500">
+                    <div class="intro-content">
+                        <div class="intro-text">
+                            <h2 class="card-title">HI THERE, I'M MUKESH</h2>
+                            <p class="card-text">
+                                I'm a passionate Backend Developer with over 4 years of experience architecting enterprise-grade systems. I specialize in Java ecosystem technologies including Spring Boot, Hibernate, JPA, and microservices architecture. My expertise spans across high-performance analytics pipelines, billing systems, and data management platforms that serve millions of users. I've consistently delivered measurable results - from reducing query processing time by 75% at Turing to increasing system efficiency by 40% at Revalgo AI. My technical foundation includes RESTful APIs, database optimization, cloud technologies, and system design patterns that enable scalable, high-performance solutions.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card time" data-aos="fade-up" data-aos-duration="1500">
+                    <h2 class="card-title">VERY FLEXIBLE WITH COMMUNICATIONS & LOCATIONS</h2>
+                    <p class="card-text">Based in India <span class="flag-emoji">🇮🇳</span> and open to remote work worldwide.</p>
+                </div>
+
+                <div class="card passion" data-aos="fade-up" data-aos-duration="1500">
+                    <h2 class="card-title">PASSION FOR CODING</h2>
+                    <p class="card-text">
+                        Passionate about coding and solving complex engineering challenges through innovative system design. Beyond my professional work in distributed architectures and performance optimization, I enjoy fitness, watching anime, and exploring new technologies.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills" class="section skills-section">
+            <div class="container">
+                <div class="section-header" data-aos="fade-down" data-aos-easing="linear" data-aos-duration="1500">
+                    <h2 class="section-title">Skills & Technologies</h2>
+                    <p class="section-subtitle">My technical expertise and tools</p>
+                </div>
+                
+                <div class="skills-grid">
+                    <div class="skill-category" data-aos="fade-right" data-aos-offset="300" data-aos-easing="ease-in-sine" data-aos-duration="1500">
+                        <h4>Programming Languages</h4>
+                        <div class="skill-items">
+                            <span class="skill-item">☕ Java SE</span>
+                            <span class="skill-item">☕ Java EE</span>
+                            <span class="skill-item">🐍 Python</span>
+                            <span class="skill-item">🌙 Lua</span>
+                            <span class="skill-item">🌐 HTML</span>
+                            <span class="skill-item">🎨 CSS</span>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-category" data-aos="fade-up" data-aos-duration="1500">
+                        <h4>Frameworks & Libraries</h4>
+                        <div class="skill-items">
+                            <span class="skill-item">🍃 Spring Boot</span>
+                            <span class="skill-item">🔶 Hibernate</span>
+                            <span class="skill-item">📊 JPA</span>
+                            <span class="skill-item">🏗️ MicroService</span>
+                            <span class="skill-item">🌐 RESTful API</span>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-category" data-aos="fade-left" data-aos-offset="300" data-aos-easing="ease-in-sine" data-aos-duration="1500">
+                        <h4>Databases</h4>
+                        <div class="skill-items">
+                            <span class="skill-item">🐬 MySQL</span>
+                            <span class="skill-item">📊 Cassandra</span>
+                            <span class="skill-item">🍃 Mongo</span>
+                            <span class="skill-item">⚡ Redis</span>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-category" data-aos="fade-up" data-aos-duration="1500">
+                        <h4>Cloud & DevOps</h4>
+                        <div class="skill-items">
+                            <span class="skill-item">☁️ AWS</span>
+                            <span class="skill-item">🐳 Docker</span>
+                            <span class="skill-item">🔧 Jenkins</span>
+                            <span class="skill-item">📈 Grafana</span>
+                            <span class="skill-item">🐧 Linux</span>
+                            <span class="skill-item">⚙️ GitHub Actions</span>
+                            <span class="skill-item">🚀 GitLab CI/CD</span>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-category" data-aos="fade-right" data-aos-offset="300" data-aos-easing="ease-in-sine" data-aos-duration="1500">
+                        <h4>Integration & Tools</h4>
+                        <div class="skill-items">
+                            <span class="skill-item">🚀 Apache Kafka</span>
+                            <span class="skill-item">📝 XML</span>
+                            <span class="skill-item">📋 JSON</span>
+                            <span class="skill-item">🔍 OpenSearch</span>
+                            <span class="skill-item">🎯 Orchestration</span>
+                            <span class="skill-item">📮 Postman</span>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-category" data-aos="fade-up" data-aos-duration="1500">
+                        <h4>Core Technologies</h4>
+                        <div class="skill-items">
+                            <span class="skill-item">🏗️ Data Structures</span>
+                            <span class="skill-item">🧮 Algorithms</span>
+                            <span class="skill-item">🏛️ System Design</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Experience Section -->
+        <section id="experience" class="section experience-section">
+            <div class="container">
+                <div class="section-header" data-aos="fade-down" data-aos-easing="linear" data-aos-duration="1500">
+                    <h2 class="section-title">Experience</h2>
+                    <p class="section-subtitle">My professional journey</p>
+                </div>
+                
+                <div class="timeline">
+                    <div class="timeline-item" data-aos="fade-right" data-aos-offset="300" data-aos-easing="ease-in-sine" data-aos-duration="1500">
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-header">
+                                <h3>Pod Lead</h3>
+                                <span class="company">Turing Remote</span>
+                                <span class="duration">Mar 2025 - Present</span>
+                            </div>
+                            <ul class="timeline-achievements">
+                                <li>Designed and led development of a high-performance analytics pipeline using Java and Spring Boot microservices architecture, in collaboration with the Managed CDO team and Sable Storage providers, achieving a 75% reduction in query processing time</li>
+                                <li>Engineered seamless integration of large-scale Amazon data streams via Apache Kafka into Sable Storage, optimizing data ingestion and access workflows by 300%, which significantly reduced overall storage and retrieval costs</li>
+                                <li>Applied enterprise-grade data handling strategies leveraging Java SE/EE, Spring Boot, Hibernate, JPA, RESTful APIs, and MS SQL to implement scalable, fault-tolerant microservices for storage management—driving major cost efficiencies and system resilience</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item" data-aos="fade-left" data-aos-offset="300" data-aos-easing="ease-in-sine" data-aos-duration="1500">
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-header">
+                                <h3>Software Engineer</h3>
+                                <span class="company">Revalgo AI Remote</span>
+                                <span class="duration">Aug 2024 - Mar 2025</span>
+                            </div>
+                            <ul class="timeline-achievements">
+                                <li>Developed a robust postpaid billing system using Spring Boot, Lua, Java SE, Java EE, Hibernate, JPA, XML, JSON, RESTful APIs, and MySQL, creating functionalities tailored to the unique billing requirements and increasing efficiency by 40%</li>
+                                <li>Implemented innovative features for both prepaid and postpaid billing systems, utilizing different conditions and implementations based on the billing type, resulting in a 30% reduction in errors</li>
+                                <li>Collaborated with cross-functional teams, including finance, customer service, and product development, to align billing processes with business objectives and ensure seamless integration with other systems and processes</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item" data-aos="fade-right" data-aos-offset="300" data-aos-easing="ease-in-sine" data-aos-duration="1500">
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-header">
+                                <h3>Software Developer</h3>
+                                <span class="company">Ntt Data Pune</span>
+                                <span class="duration">Oct 2021 - Aug 2024</span>
+                            </div>
+                            <ul class="timeline-achievements">
+                                <li>Integrated Mongo databases with Spring framework, Java SE, Java EE, Hibernate, JPA, XML, JSON, RESTful APIs, and SQL servers, improving storage capacity by 95%</li>
+                                <li>Optimized performance of the reminder messaging system in staggering intervals for enhanced user experience, resulting in a 10% increase in customer satisfaction</li>
+                                <li>Recognized as the best employee in the Lending Team within a short duration for consistently exceeding performance targets and delivering exceptional customer service</li>
+                                <li>Secured top ratings of 4.2 in Google Play Store for Lending and Paylater products by developing and testing end-to-end software features with over 5 million monthly users</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item" data-aos="fade-left" data-aos-offset="300" data-aos-easing="ease-in-sine" data-aos-duration="1500">
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-header">
+                                <h3>Software Developer Intern</h3>
+                                <span class="company">NOICE Gurgaon, Haryana</span>
+                                <span class="duration">May 2021 - Oct 2021</span>
+                            </div>
+                            <ul class="timeline-achievements">
+                                <li>Developed and executed end-to-end test suites for backend services, ensuring seamless integration between MongoDB, SQL databases, and Spring framework, improving storage efficiency by 95%</li>
+                                <li>Optimized API performance and automated reminder messaging system testing, enhancing user experience and increasing customer satisfaction by 10%</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="section projects-section">
+            <div class="container">
+                <div class="section-header" data-aos="fade-down" data-aos-easing="linear" data-aos-duration="1500">
+                    <h2 class="section-title">Featured Projects</h2>
+                    <p class="section-subtitle">Some of my recent work and achievements</p>
+                </div>
+                
+                <div class="projects-grid">
+                    <div class="project-card featured" data-aos="fade-right" data-aos-offset="300" data-aos-easing="ease-in-sine" data-aos-duration="1500">
+                        <div class="project-image">
+                            <div class="project-placeholder">
+                                <span class="project-icon">🎓</span>
+                            </div>
+                        </div>
+                        <div class="project-content">
+                            <h3 class="project-title">HiperLearn Educational Platform</h3>
+                            <p class="project-description">
+                                Enabled gathering of extensive book & video metadata from disparate sources, utilizing web scraping and YouTube Data APIs, resulting in a populated Arrango database of 8M records. Utilized Spring Boot to develop robust backend systems for gathering extensive book and video metadata from disparate sources, including web scraping techniques and integration with YouTube Data APIs.
+                            </p>
+                            <div class="project-tech">
+                                <span class="tech-tag">Spring Boot</span>
+                                <span class="tech-tag">ArangoDB</span>
+                                <span class="tech-tag">YouTube APIs</span>
+                                <span class="tech-tag">Web Scraping</span>
+                            </div>
+                            <div class="project-links">
+                                <a href="http://hiperlearn.com/" target="_blank" class="project-link">
+                                    <span>Live Demo</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="project-card" data-aos="fade-up" data-aos-duration="1500">
+                        <div class="project-image">
+                            <div class="project-placeholder">
+                                <span class="project-icon">💰</span>
+                            </div>
+                        </div>
+                        <div class="project-content">
+                            <h3 class="project-title">Advanced Billing System</h3>
+                            <p class="project-description">
+                                Developed a robust postpaid billing system using Spring Boot, Lua, Java EE, and Hibernate. 
+                                Architected functionalities tailored to unique billing requirements, increasing system efficiency by 40%. 
+                                Implemented innovative features for both prepaid and postpaid systems with error reduction of 30%.
+                            </p>
+                            <div class="project-tech">
+                                <span class="tech-tag">Spring Boot</span>
+                                <span class="tech-tag">Lua</span>
+                                <span class="tech-tag">Java EE</span>
+                                <span class="tech-tag">Hibernate</span>
+                                <span class="tech-tag">MySQL</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="project-card" data-aos="fade-left" data-aos-offset="300" data-aos-easing="ease-in-sine" data-aos-duration="1500">
+                        <div class="project-image">
+                            <div class="project-placeholder">
+                                <span class="project-icon">📊</span>
+                            </div>
+                        </div>
+                        <div class="project-content">
+                            <h3 class="project-title">Analytics Pipeline</h3>
+                            <p class="project-description">
+                                Designed and led development of a high-performance analytics pipeline using Java and Spring Boot microservices architecture. 
+                                Achieved 75% query processing time reduction and optimized data workflows by 300% through Apache Kafka integration.
+                            </p>
+                            <div class="project-tech">
+                                <span class="tech-tag">Spring Boot</span>
+                                <span class="tech-tag">Apache Kafka</span>
+                                <span class="tech-tag">Java EE</span>
+                                <span class="tech-tag">MS SQL</span>
+                                <span class="tech-tag">Microservices</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="project-card" data-aos="fade-up" data-aos-duration="1500">
+                        <div class="project-image">
+                            <div class="project-placeholder">
+                                <span class="project-icon">🗄️</span>
+                            </div>
+                        </div>
+                        <div class="project-content">
+                            <h3 class="project-title">Database Optimization</h3>
+                            <p class="project-description">
+                                Integrated MongoDB databases with Spring framework and SQL servers, improving storage capacity by 95%. 
+                                Optimized reminder messaging system performance resulting in 10% increase in customer satisfaction. 
+                                Contributed to high app store ratings for products serving 5M+ users.
+                            </p>
+                            <div class="project-tech">
+                                <span class="tech-tag">MongoDB</span>
+                                <span class="tech-tag">Spring Framework</span>
+                                <span class="tech-tag">Java EE</span>
+                                <span class="tech-tag">SQL Server</span>
+                                <span class="tech-tag">RESTful APIs</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Education & Certifications Section -->
+        <section id="education" class="section education-section">
+            <div class="container">
+                <div class="section-header" data-aos="fade-down" data-aos-easing="linear" data-aos-duration="1500">
+                    <h2 class="section-title">Education & Certifications</h2>
+                    <p class="section-subtitle">Academic background and professional certifications</p>
+                </div>
+                
+                <div class="education-content">
+                    <div class="education-item" data-aos="fade-right" data-aos-offset="300" data-aos-easing="ease-in-sine" data-aos-duration="1500">
+                        <div class="education-icon">🎓</div>
+                        <div class="education-details">
+                            <h3>B.Tech - Computer Science & Engineering</h3>
+                            <span class="institution">Techno International Newtown Kolkata, West Bengal</span>
+                            <span class="grade">CGPA: 8.04/10</span>
+                            <span class="duration">Graduation: May 2021</span>
+                        </div>
+                    </div>
+                    
+                    <div class="certifications-grid">
+                        <div class="certification-item" data-aos="fade-up" data-aos-duration="1500">
+                            <div class="certification-icon">📜</div>
+                            <div class="certification-details">
+                                <h4>Microsoft SQL Server</h4>
+                                <span class="provider">Udemy Certification</span>
+                            </div>
+                        </div>
+                        
+                        <div class="certification-item" data-aos="fade-left" data-aos-offset="300" data-aos-easing="ease-in-sine" data-aos-duration="1500">
+                            <div class="certification-icon">🍃</div>
+                            <div class="certification-details">
+                                <h4>Spring Boot 3, Spring 6 & Hibernate</h4>
+                                <span class="provider">Udemy Certification</span>
+                            </div>
+                        </div>
+                        
+                        <div class="certification-item" data-aos="fade-up" data-aos-duration="1500">
+                            <div class="certification-icon">🌙</div>
+                            <div class="certification-details">
+                                <h4>Master Lua Programming</h4>
+                                <span class="provider">Professional Certification</span>
+                            </div>
+                        </div>
+
+                        <div class="certification-item" data-aos="fade-right" data-aos-offset="300" data-aos-easing="ease-in-sine" data-aos-duration="1500">
+                            <div class="certification-icon">📮</div>
+                            <div class="certification-details">
+                                <h4>Postman API Testing</h4>
+                                <span class="provider">Professional Certification</span>
+                            </div>
+                        </div>
+
+                        <div class="certification-item" data-aos="fade-up" data-aos-duration="1500">
+                            <div class="certification-icon">🔧</div>
+                            <div class="certification-details">
+                                <h4>REST API Testing Automation with RestAssured</h4>
+                                <span class="provider">Professional Certification</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="section contact-section">
+            <div class="container">
+                <div class="section-header" data-aos="zoom-in-up" data-aos-easing="ease-out-back" data-aos-duration="1200">
+                    <h2 class="section-title">Get In Touch</h2>
+                    <p class="section-subtitle">Let's create something amazing together</p>
+                </div>
+                
+                <div class="contact-content">
+                    <div class="contact-info">
+                        <div class="contact-item" data-aos="flip-left" data-aos-offset="200" data-aos-easing="ease-out-cubic" data-aos-duration="800" data-aos-delay="100">
+                            <div class="contact-icon">📧</div>
+                            <div class="contact-details">
+                                <h4>Email</h4>
+                                <a href="mailto:mukesh.das05jsr@gmail.com">mukesh.das05jsr@gmail.com</a>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item" data-aos="flip-left" data-aos-offset="200" data-aos-easing="ease-out-cubic" data-aos-duration="800" data-aos-delay="300">
+                            <div class="contact-icon">📱</div>
+                            <div class="contact-details">
+                                <h4>Phone</h4>
+                                <a href="tel:+917631127661">+91 7631127661</a>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item" data-aos="flip-left" data-aos-offset="200" data-aos-easing="ease-out-cubic" data-aos-duration="800" data-aos-delay="500">
+                            <div class="contact-icon">💼</div>
+                            <div class="contact-details">
+                                <h4>LinkedIn</h4>
+                                <a href="https://www.linkedin.com/in/mukeshdas7277/" target="_blank">Connect with me</a>
+                            </div>
+                        </div>
+
+                    </div>
+                    
+                    <div class="contact-form-container" data-aos="slide-up" data-aos-offset="200" data-aos-easing="ease-out-back" data-aos-duration="1000" data-aos-delay="200">
+                        <form class="contact-form" id="contact-form">
+                            <div class="form-group" data-aos="fade-up" data-aos-offset="100" data-aos-duration="600" data-aos-delay="400">
+                                <input type="text" id="name" placeholder="Your Name" required>
+                            </div>
+                            <div class="form-group" data-aos="fade-up" data-aos-offset="100" data-aos-duration="600" data-aos-delay="500">
+                                <input type="email" id="email" placeholder="Your Email" required>
+                            </div>
+                            <div class="form-group" data-aos="fade-up" data-aos-offset="100" data-aos-duration="600" data-aos-delay="600">
+                                <textarea id="message" placeholder="Your Message" rows="5" required></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary" data-aos="zoom-in" data-aos-offset="100" data-aos-duration="500" data-aos-delay="700">Send Message</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-text">
+                    <p>&copy; 2025 Mukesh Das. Crafted with passion and code.</p>
+                </div>
+                <div class="footer-links">
+                    <a href="https://www.linkedin.com/in/mukeshdas7277/" target="_blank">LinkedIn</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Audio Element (like the reference site) -->
+    <audio controls style="display: none;">
+        <source src="" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+    <!-- Hidden Background Music -->
+    <audio id="backgroundMusic" loop preload="auto">
+        <!-- Primary Local Krishna Flute Music -->
+        <source src="flute.mp3" type="audio/mpeg">
+        <!-- Backup Krishna Flute Music Sources -->
+        <source src="https://www.soundjay.com/misc/sounds/krishna-flute-1.mp3" type="audio/mpeg">
+        <source src="https://freesound.org/data/previews/425/425467_8462944-lq.mp3" type="audio/mpeg">
+        <source src="https://www.zapsplat.com/wp-content/uploads/2015/sound-effects-one/indian_classical_music_bansuri_flute_peaceful_meditation_007.mp3" type="audio/mpeg">
+        <!-- Peaceful Indian Classical alternatives -->
+        <source src="https://freemusicarchive.org/file/music/ccCommunity/Indian_Classical/Indian_Classical_-_Bansuri_Meditation/07_-_Peaceful_Krishna_Flute.mp3" type="audio/mpeg">
+        <source src="https://archive.org/download/krishna-flute-meditation/krishna-divine-flute.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+    <!-- AOS Animation Script -->
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
+
+    <!-- Scripts -->
+    <script src="script.js"></script>
+</body>
+</html> 
