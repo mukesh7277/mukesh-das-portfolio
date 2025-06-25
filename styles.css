@@ -787,13 +787,12 @@ spline-viewer.planet-3D {
     }
 
     .hero-main h1 {
-        display: none;
+        font-size: 3.5rem;
+        letter-spacing: 1px;
     }
 
     .hero-main h2 {
-        display: block;
-        margin-top: -3rem;
-        font-size: 4rem;
+        display: none;
     }
 
     .bio-section {
@@ -845,7 +844,7 @@ spline-viewer.planet-3D {
 
 /* Small Mobile */
 @media (max-width: 380px) {
-    .hero-main h2 {
+    .hero-main h1 {
         font-size: 3rem;
     }
     
@@ -876,7 +875,7 @@ spline-viewer.planet-3D {
 
 /* Foldable/Narrow Mobile */
 @media (max-width: 320px) {
-    .hero-main h2 {
+    .hero-main h1 {
         font-size: 2.5rem;
     }
     
@@ -1320,6 +1319,7 @@ spline-viewer.planet-3D {
     }
 
     .nav-menu {
+        display: none; /* Hide by default */
         position: fixed;
         top: 0;
         right: -100%;
