@@ -751,7 +751,7 @@ function downloadResume() {
     
     confirmBtn.addEventListener('click', () => {
         // Google Drive view URL - opens in new tab for viewing/downloading
-        const resumeUrl = 'https://drive.google.com/file/d/1QBRCy6NC6Mnh3cTG4DaUnPz-mS4w0K7W/view';
+        const resumeUrl = 'https://drive.google.com/file/d/1ez0_-m0y7W8BjxAwfJ4I2iEms45f-fq7/view';
         
         // Open in new tab
         window.open(resumeUrl, '_blank');
